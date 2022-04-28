@@ -4,6 +4,9 @@
  */
 package Frames;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+
 /**
  *
  * @author RSSH
@@ -53,7 +56,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Employee");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -61,6 +64,11 @@ public class Login extends javax.swing.JFrame {
         });
 
         jButton3.setText("Login");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -137,6 +145,12 @@ public class Login extends javax.swing.JFrame {
         txtLogin.setText("Employee Login");
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try{   
+        Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "50422995");    }//GEN-LAST:event_jButton3ActionPerformed
+        }
     /**
      * @param args the command line arguments
      */
