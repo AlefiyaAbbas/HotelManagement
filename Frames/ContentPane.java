@@ -4,9 +4,12 @@
  */
 package Frames;
 
+import static Frames.MainFrame.ContentPanel;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import java.awt.event.*;
+import javax.swing.JButton;
 
 /**
  *
@@ -32,7 +35,7 @@ public class ContentPane extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblEventName = new javax.swing.JLabel();
+        lblDID = new javax.swing.JLabel();
         lblDueDate = new javax.swing.JLabel();
         lblCategoryName = new javax.swing.JLabel();
         lblDueTime = new javax.swing.JLabel();
@@ -42,6 +45,8 @@ public class ContentPane extends javax.swing.JPanel {
         Important = new javax.swing.JLabel();
         Completed = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
+        btnComplete1 = new javax.swing.JButton();
+        btnComplete2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(116, 185, 255));
         setPreferredSize(new java.awt.Dimension(700, 100));
@@ -51,17 +56,17 @@ public class ContentPane extends javax.swing.JPanel {
             }
         });
 
-        lblEventName.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        lblEventName.setText("EventName");
+        lblDID.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        lblDID.setText("ID");
 
         lblDueDate.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        lblDueDate.setText("DueDate");
+        lblDueDate.setText("Room");
 
         lblCategoryName.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        lblCategoryName.setText("CategoryName");
+        lblCategoryName.setText("Name");
 
         lblDueTime.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        lblDueTime.setText("DueTime");
+        lblDueTime.setText("Location");
 
         lblID.setText("ID");
 
@@ -87,6 +92,28 @@ public class ContentPane extends javax.swing.JPanel {
             }
         });
 
+        btnComplete1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        btnComplete1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/tickmark.png"))); // NOI18N
+        btnComplete1.setBorder(null);
+        btnComplete1.setBorderPainted(false);
+        btnComplete1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnComplete1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComplete1ActionPerformed(evt);
+            }
+        });
+
+        btnComplete2.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        btnComplete2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/tickmark.png"))); // NOI18N
+        btnComplete2.setBorder(null);
+        btnComplete2.setBorderPainted(false);
+        btnComplete2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnComplete2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComplete2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,19 +122,27 @@ public class ContentPane extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblEventName, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(101, 101, 101)
+                        .addGap(221, 221, 221)
                         .addComponent(Important)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
                         .addComponent(Completed))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblDueDate)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDueDate)
+                            .addComponent(lblDID, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCategoryName)
-                    .addComponent(lblDueTime, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(123, 123, 123)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblDueTime, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(123, 123, 123))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblCategoryName)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnComplete2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnComplete1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnComplete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -121,26 +156,38 @@ public class ContentPane extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Important)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(lblEventName)
-                                        .addComponent(lblCategoryName))
-                                    .addComponent(btnComplete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(Completed))
+                                    .addComponent(Important)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(lblDID)
+                                                .addComponent(lblCategoryName))
+                                            .addComponent(btnComplete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(Completed))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblDueDate))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(19, 19, 19)
+                                                .addComponent(lblDueTime))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 1, Short.MAX_VALUE))))
+                            .addComponent(lblID))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblDueDate)
-                                    .addComponent(lblDueTime, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(lblID))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                            .addComponent(btnComplete2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnComplete1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -149,7 +196,7 @@ public class ContentPane extends javax.swing.JPanel {
         //JOptionPane.showMessageDialog(this, lblEventName.getText());
         EventDesc ed = new EventDesc();
         ed.setVisible(true);
-        ed.txtEventName.setText(lblEventName.getText());
+        ed.txtEventName.setText(lblDID.getText());
         ed.IDDesc.setText(lblID.getText());
         ed.btnConfirm.setVisible(true);
         ed.btnUpdate.setVisible(true);
@@ -192,17 +239,55 @@ public class ContentPane extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void btnComplete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComplete1ActionPerformed
+        int i = 0;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
+            MainFrame.ContentPanel.removeAll();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from rooms where hotelid =" + lblID.getText() + ";");
+            while (rs.next()) {
+                i = 0;
+                ContentPane Panel = new ContentPane();
+                Panel.setBounds(50, 50 + (i * 100), 700, 100);
+                Panel.lblDID.setText(Integer.toString(rs.getInt("rID")));
+                Panel.btnDelete.setVisible(false);
+                Panel.btnComplete.setVisible(false);
+                Panel.btnComplete1.setVisible(false);
+                Panel.lblCategoryName.setText(rs.getString("Type"));
+                btnComplete1.setVisible(false);
+                btnComplete2.setVisible(false);
+                Panel.lblDueDate.setText(rs.getString("rate"));
+//                Panel.lblDueTime.setText(rs.getString("Location"));
+                ContentPanel.add(Panel);
+                i++;
+            }
+            ContentPanel.revalidate();
+            ContentPanel.repaint();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_btnComplete1ActionPerformed
+
+    private void btnComplete2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComplete2ActionPerformed
+
+    }//GEN-LAST:event_btnComplete2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Completed;
     public javax.swing.JLabel Important;
     public javax.swing.JButton btnComplete;
+    public javax.swing.JButton btnComplete1;
+    public javax.swing.JButton btnComplete2;
     public javax.swing.JButton btnDelete;
     private javax.swing.JSeparator jSeparator1;
     public javax.swing.JLabel lblCategoryName;
+    public javax.swing.JLabel lblDID;
     public javax.swing.JLabel lblDueDate;
     public javax.swing.JLabel lblDueTime;
-    public javax.swing.JLabel lblEventName;
     public javax.swing.JLabel lblID;
     // End of variables declaration//GEN-END:variables
 }

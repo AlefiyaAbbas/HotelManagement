@@ -4,10 +4,10 @@
  */
 package Frames;
 
+import java.awt.Color;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.awt.Color;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -15,7 +15,7 @@ import java.awt.event.*;
 
 /**
  *
- * @author
+ * @author RSSH
  */
 public class MainFrame extends javax.swing.JFrame {
 
@@ -25,43 +25,6 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
-        int i = 0;
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        DateFormat time = new SimpleDateFormat("HH:mm:ss");
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "50422995");
-
-            ContentPanel.removeAll();
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from customer");
-            rs.next();
-
-            //System.out.println(rstime.getTime("curtime()").before(rs.getTime("DueTime")));
-            do {
-
-                ContentPane Panel = new ContentPane();
-                Panel.setBounds(50, 50 + (i * 100), 700, 100);
-                Panel.lblEventName.setText(rs.getString("Name"));
-                Panel.lblCategoryName.setText(rs.getString("PhoneNumber"));
-//                Panel.lblID.setText(Integer.toString(rs.getString("ID")));
-//                Panel.lblDueDate.setText(dateFormat.format(rs.getDate("DueDate")));
-//                Panel.lblDueTime.setText(time.format(rs.getTime("DueTime")));
-//                Panel.Important.setText(Integer.toString(rs.getInt("Important")));
-                Panel.btnComplete.setVisible(true);
-                Panel.setBackground(new Color(116, 185, 255));
-                if (i % 2 != 0) {
-                    Panel.setBackground(new Color(9, 132, 227));
-                }
-                ContentPanel.add(Panel);
-                i++;
-            } while (rs.next());
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
         MainScrollPanel.setViewportView(ContentPanel);
         revalidate();
         repaint();
@@ -263,7 +226,7 @@ public class MainFrame extends javax.swing.JFrame {
                 Panel.setBounds(50, 50 + (i * 100), 700, 100);
                 Panel.lblID.setText(Integer.toString(rs.getInt("ID")));
                 Panel.btnDelete.setVisible(true);
-                Panel.lblEventName.setText(rs.getString("EventName"));
+                Panel.lblDID.setText(rs.getString("EventName"));
                 Panel.lblDueDate.setText(dateFormat.format(rs.getDate("DueDate")));
                 Panel.lblDueTime.setText(time.format(rs.getTime("DueTime")));
                 Panel.lblCategoryName.setText(rs.getString("Category"));
@@ -289,70 +252,42 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void MainUpcomingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainUpcomingActionPerformed
         int i = 0;
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        DateFormat time = new SimpleDateFormat("HH:mm:ss");
-
+        int j = 0;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/timekeeper", "root", "srshah");
-
+                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
             ContentPanel.removeAll();
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from events where completed = 0 and DueDate>=curdate() order by Important desc, DueDate;");
-            rs.next();
-            Statement curtime = con.createStatement();
+            Statement rstmt = con.createStatement();
 
-            ResultSet rstime = curtime.executeQuery("select curtime(), curdate();");
-            rstime.next();
-            //System.out.println(rstime.getTime("curtime()").before(rs.getTime("DueTime")));
-            while (rs.getInt("Important") == 1) {
-                if (dateFormat.format(rstime.getDate("curdate()")).equals(dateFormat.format(rs.getDate("DueDate")))) {
-                    if (rstime.getTime("curtime()").after(rs.getTime("DueTime"))) {
-                        rs.next();
-                        continue;
-                    }
-                }
+            ResultSet rs = stmt.executeQuery("select * from hotel");
+
+            while (rs.next()) {
+                i = 0;
                 ContentPane Panel = new ContentPane();
-                Panel.setBounds(50, 50 + (i * 100), 700, 100);
+                Panel.setBounds(50, 50 + (j * 100), 700, 100);
                 Panel.lblID.setText(Integer.toString(rs.getInt("ID")));
-                Panel.lblEventName.setText(rs.getString("EventName"));
-                Panel.lblDueDate.setText(dateFormat.format(rs.getDate("DueDate")));
-                Panel.lblDueTime.setText(time.format(rs.getTime("DueTime")));
-                Panel.lblCategoryName.setText(rs.getString("Category"));
-                Panel.Important.setText(Integer.toString(rs.getInt("Important")));
-                Panel.btnComplete.setVisible(true);
-
-                //Panel.lblDateTime.setText(Time.rs.getTime("DueTime"));
-                Panel.setBackground(new Color(255, 234, 167));
+                Panel.btnDelete.setVisible(false);
+                Panel.btnComplete.setVisible(false);
+                Panel.btnComplete2.setVisible(false);
+                Panel.lblCategoryName.setText(rs.getString("Name"));
+                Panel.lblDID.setText("Hotel ID: " + rs.getString("ID"));
+                Panel.lblID.setText(rs.getString("ID"));
+                Panel.lblDueTime.setText(rs.getString("Location"));
+                Integer.parseInt(rs.getString("ID"));
+                ResultSet room = rstmt.executeQuery("select * from rooms where hotelid =" + rs.getString("ID"));
+                while (room.next()) {
+                    i++;
+                }
+                Panel.lblDueDate.setText("No. of Rooms: " + Integer.toString(i));
+                if (j % 2 == 0) {
+                    Panel.setBackground(new Color(255, 234, 167));
+                }
                 ContentPanel.add(Panel);
-                i++;
-                rs.next();
+                j++;
             }
-            do {
-                if (dateFormat.format(rstime.getDate("curdate()")).equals(dateFormat.format(rs.getDate("DueDate")))) {
-                    if (rstime.getTime("curtime()").after(rs.getTime("DueTime"))) {
-                        rs.next();
-                        continue;
-                    }
-                }
-                ContentPane Panel = new ContentPane();
-                Panel.setBounds(50, 50 + (i * 100), 700, 100);
-                Panel.lblEventName.setText(rs.getString("EventName"));
-                Panel.lblID.setText(Integer.toString(rs.getInt("ID")));
-                Panel.lblDueDate.setText(dateFormat.format(rs.getDate("DueDate")));
-                Panel.lblDueTime.setText(time.format(rs.getTime("DueTime")));
-                Panel.lblCategoryName.setText(rs.getString("Category"));
-                Panel.Important.setText(Integer.toString(rs.getInt("Important")));
-                Panel.btnComplete.setVisible(true);
-                Panel.setBackground(new Color(116, 185, 255));
-                if (i % 2 != 0) {
-                    Panel.setBackground(new Color(9, 132, 227));
-                }
-                ContentPanel.add(Panel);
-                i++;
-            } while (rs.next());
-            con.close();
+
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -382,7 +317,7 @@ public class MainFrame extends javax.swing.JFrame {
                 Panel.setBounds(50, 50 + (i * 100), 700, 100);
                 Panel.btnDelete.setVisible(true);
                 Panel.lblID.setText(Integer.toString(rs.getInt("ID")));
-                Panel.lblEventName.setText(rs.getString("EventName"));
+                Panel.lblDID.setText(rs.getString("EventName"));
                 Panel.lblDueDate.setText(dateFormat.format(rs.getDate("DueDate")));
                 Panel.lblDueTime.setText(time.format(rs.getTime("DueTime")));
                 Panel.lblCategoryName.setText(rs.getString("Category"));
@@ -451,6 +386,7 @@ public class MainFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -477,7 +413,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JPanel ContentPanel;
+    public static javax.swing.JPanel ContentPanel;
     private javax.swing.JButton MainAdd;
     private javax.swing.JPanel MainBackground;
     private javax.swing.JPanel MainButtonBackground;
