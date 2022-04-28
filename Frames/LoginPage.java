@@ -147,10 +147,12 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         textLogin.setText("Manager Login");
+        jLabel1.setText("M");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         textLogin.setText("Employee Login");
+        jLabel1.setText("E");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -165,7 +167,7 @@ public class LoginPage extends javax.swing.JFrame {
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/HotelManagement", "root", "50422995");
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from login where Desg =" +designation);
+            ResultSet rs = stmt.executeQuery("select * from login where desg =" +designation+";");
             while (rs.next()) {
                 if(rs.getString("userid").equals(login) && rs.getString("password").equals(pass) && rs.getString("Desg").equals(designation))
                 {
