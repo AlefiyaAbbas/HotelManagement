@@ -19,6 +19,7 @@ public class LoginPage extends javax.swing.JFrame {
     public LoginPage() {
         initComponents();
         jLabel1.setVisible(false);
+        jLabel1.setText("E");
     }
 
     /**
@@ -159,7 +160,7 @@ public class LoginPage extends javax.swing.JFrame {
         String login = null;
         String pass = null;
         String designation = null;
-        designation = jLabel1.getText();
+
         login = jTextField1.getText();
         pass = jTextField2.getText();
         try {
@@ -167,14 +168,14 @@ public class LoginPage extends javax.swing.JFrame {
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/HotelManagement", "root", "50422995");
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from login where desg ='" +designation+"';");
+            ResultSet rs = stmt.executeQuery("select * from login where desg ='" + designation + "';");
             while (rs.next()) {
-                if(rs.getString("userid").equals(login) && rs.getString("password").equals(pass) && rs.getString("Desg").equals(designation))
-                {
+                designation = jLabel1.getText();
+                if (rs.getString("userid").equals(login) && rs.getString("password").equals(pass) && rs.getString("Desg").equals(designation)) {
                     JOptionPane.showMessageDialog(this, "Welcome");
-                }
-                else
+                } else {
                     JOptionPane.showMessageDialog(this, "Wrong");
+                }
             }
         } catch (Exception e) {
             System.out.println(e);
