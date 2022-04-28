@@ -167,7 +167,7 @@ public class LoginPage extends javax.swing.JFrame {
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/HotelManagement", "root", "50422995");
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from login where desg =" +designation+";");
+            ResultSet rs = stmt.executeQuery("select * from login where desg ='" +designation+"';");
             while (rs.next()) {
                 if(rs.getString("userid").equals(login) && rs.getString("password").equals(pass) && rs.getString("Desg").equals(designation))
                 {
