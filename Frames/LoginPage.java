@@ -19,7 +19,7 @@ public class LoginPage extends javax.swing.JFrame {
     public LoginPage() {
         initComponents();
         jLabel1.setVisible(false);
-        jLabel1.setText("E");
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -35,12 +35,12 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         textLogin = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,7 +50,7 @@ public class LoginPage extends javax.swing.JFrame {
 
         textLogin.setFont(new java.awt.Font("Poppins", 0, 24)); // NOI18N
         textLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        textLogin.setText("Employee LOGIN");
+        textLogin.setText("Employee Login");
 
         jButton1.setText("Manager");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -85,9 +85,9 @@ public class LoginPage extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addGap(69, 69, 69)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                    .addComponent(jPasswordField1))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(61, 61, 61)
@@ -124,8 +124,8 @@ public class LoginPage extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
@@ -160,21 +160,25 @@ public class LoginPage extends javax.swing.JFrame {
         String login = null;
         String pass = null;
         String designation = null;
-
+        designation = jLabel1.getText();
         login = jTextField1.getText();
-        pass = jTextField2.getText();
+        pass = new String(jPasswordField1.getPassword());
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "50422995");
+                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from login where desg ='" + designation + "';");
+            System.out.println(stmt.toString());
             while (rs.next()) {
-                designation = jLabel1.getText();
-                if (rs.getString("userid").equals(login) && rs.getString("password").equals(pass) && rs.getString("Desg").equals(designation)) {
+                if (rs.getString("userid").equals(login) && rs.getString("password").equals(pass)) {
                     JOptionPane.showMessageDialog(this, "Welcome");
-                } else {
-                    JOptionPane.showMessageDialog(this, "Wrong");
+                    if (designation.equals("E")) {
+                        this.dispose();
+                        new MainFrame().setVisible(true);
+                    } else {
+                        this.dispose();
+                    }
                 }
             }
         } catch (Exception e) {
@@ -225,8 +229,8 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel textLogin;
     // End of variables declaration//GEN-END:variables
 }
