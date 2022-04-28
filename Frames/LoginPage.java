@@ -171,8 +171,10 @@ public class LoginPage extends javax.swing.JFrame {
             while (rs.next()) {
                 if(rs.getString("userid").equals(login) && rs.getString("password").equals(pass) && rs.getString("Desg").equals(designation))
                 {
-                    JOptionPane.showConfirmDialog(null, "Welcome");
+                    JOptionPane.showMessageDialog(this, "Welcome");
                 }
+                else
+                    JOptionPane.showMessageDialog(this, "Wrong");
             }
         } catch (Exception e) {
             System.out.println(e);
