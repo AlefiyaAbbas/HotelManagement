@@ -25,6 +25,9 @@ public class ContentPane extends javax.swing.JPanel {
         lblID.setVisible(false);
         Important.setVisible(false);
         jLabel1.setVisible(false);
+        btnDelete1.setVisible(false);
+        btnDelete2.setVisible(false);
+        btnDelete.setVisible(false);
     }
 
     /**
@@ -41,7 +44,6 @@ public class ContentPane extends javax.swing.JPanel {
         lblCategoryName = new javax.swing.JLabel();
         lblDueTime = new javax.swing.JLabel();
         lblID = new javax.swing.JLabel();
-        btnComplete = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         Important = new javax.swing.JLabel();
         Completed = new javax.swing.JLabel();
@@ -73,17 +75,6 @@ public class ContentPane extends javax.swing.JPanel {
         lblDueTime.setText("Location");
 
         lblID.setText("ID");
-
-        btnComplete.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        btnComplete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/tickmark.png"))); // NOI18N
-        btnComplete.setBorder(null);
-        btnComplete.setBorderPainted(false);
-        btnComplete.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnComplete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCompleteActionPerformed(evt);
-            }
-        });
 
         btnDelete.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Dellete-Small.png"))); // NOI18N
@@ -174,9 +165,7 @@ public class ContentPane extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnComplete1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnComplete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(lblID))
             .addGroup(layout.createSequentialGroup()
@@ -197,7 +186,6 @@ public class ContentPane extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblDID)
                                 .addComponent(lblCategoryName))
-                            .addComponent(btnComplete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnComplete1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnComplete2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(Completed))
@@ -234,20 +222,6 @@ public class ContentPane extends javax.swing.JPanel {
 
     }//GEN-LAST:event_formMouseClicked
 
-    private void btnCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteActionPerformed
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/timekeeper", "root", "srshah");
-            PreparedStatement pst = con.prepareStatement("update events set completed = 1 where ID = ?");
-            pst.setInt(1, Integer.parseInt(lblID.getText()));
-            pst.executeUpdate();
-            this.setVisible(false);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }//GEN-LAST:event_btnCompleteActionPerformed
-
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -278,7 +252,7 @@ public class ContentPane extends javax.swing.JPanel {
                 Panel.lblDID.setText(Integer.toString(rs.getInt("rID")));
                 Panel.lblID.setText(Integer.toString(rs.getInt("rID")));
                 Panel.btnDelete.setVisible(false);
-                Panel.btnComplete.setVisible(false);
+//                Panel.btnComplete.setVisible(false);
                 Panel.btnComplete1.setVisible(false);
                 Panel.lblCategoryName.setText(rs.getString("Type"));
                 btnComplete1.setVisible(false);
@@ -333,7 +307,7 @@ public class ContentPane extends javax.swing.JPanel {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
-            PreparedStatement pst = con.prepareStatement("delete from hotel where rid = ?");
+            PreparedStatement pst = con.prepareStatement("delete from rooms where rid = ?");
             pst.setInt(1, Integer.parseInt(lblID.getText()));
             pst.executeUpdate();
             this.setVisible(false);
@@ -346,7 +320,6 @@ public class ContentPane extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Completed;
     public javax.swing.JLabel Important;
-    public javax.swing.JButton btnComplete;
     public javax.swing.JButton btnComplete1;
     public javax.swing.JButton btnComplete2;
     public javax.swing.JButton btnDelete;

@@ -178,6 +178,7 @@ public class LoginPage extends javax.swing.JFrame {
                         new MainFrame().setVisible(true);
                     } else {
                         this.dispose();
+                        new Manager().setVisible(true);
                     }
                 }
             }

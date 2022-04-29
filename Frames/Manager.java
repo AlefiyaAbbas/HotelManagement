@@ -44,7 +44,7 @@ public class Manager extends javax.swing.JFrame {
                 Panel.btnDelete.setVisible(false);
                 Panel.btnDelete2.setVisible(false);
                 Panel.btnComplete1.setVisible(false);
-                Panel.btnComplete.setVisible(false);
+//                Panel.btnComplete.setVisible(false);
                 jButton2.setVisible(false);
                 Panel.btnComplete2.setVisible(false);
                 jButton1.setVisible(true);
@@ -265,7 +265,7 @@ public class Manager extends javax.swing.JFrame {
                 Panel.lblDID.setText(Integer.toString(rs.getInt("rID")));
                 Panel.lblID.setText(Integer.toString(rs.getInt("rID")));
                 Panel.btnDelete.setVisible(true);
-                Panel.btnComplete.setVisible(false);
+//                Panel.btnComplete.setVisible(false);
                 Panel.btnComplete1.setVisible(false);
                 Panel.btnComplete2.setVisible(false);
                 Panel.lblCategoryName.setText(rs.getString("Type"));
@@ -304,7 +304,7 @@ public class Manager extends javax.swing.JFrame {
                 Panel.btnDelete.setVisible(false);
                 Panel.btnDelete2.setVisible(false);
                 Panel.btnComplete1.setVisible(false);
-                Panel.btnComplete.setVisible(false);
+//                Panel.btnComplete.setVisible(false);
                 jButton2.setVisible(false);
                 jButton1.setVisible(true);
                 Panel.btnComplete2.setVisible(false);
@@ -356,7 +356,7 @@ public class Manager extends javax.swing.JFrame {
                 jButton1.setVisible(false);
                 jButton2.setVisible(true);
                 Panel.btnComplete1.setVisible(false);
-                Panel.btnComplete.setVisible(false);
+//                Panel.btnComplete.setVisible(false);
                 Panel.btnComplete2.setVisible(false);
                 Panel.lblDID.setText(Integer.toString(rs.getInt("rID")));
                 Panel.lblID.setText(Integer.toString(rs.getInt("rID")));

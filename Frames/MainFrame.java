@@ -200,8 +200,10 @@ public class MainFrame extends javax.swing.JFrame {
                 Panel.lblDID.setText(Integer.toString(rs.getInt("rID")));
                 Panel.lblID.setText(Integer.toString(rs.getInt("rID")));
                 Panel.btnDelete.setVisible(true);
-                Panel.btnComplete.setVisible(false);
+//                Panel.btnComplete.setVisible(false);
                 Panel.btnComplete1.setVisible(false);
+                Panel.btnDelete1.setVisible(false);
+                Panel.btnDelete2.setVisible(false);
                 Panel.btnComplete2.setVisible(false);
                 Panel.lblCategoryName.setText(rs.getString("Type"));
                 Panel.lblDueDate.setText(rs.getString("rate"));
@@ -239,11 +241,13 @@ public class MainFrame extends javax.swing.JFrame {
                 Panel.setBounds(50, 50 + (j * 100), 700, 100);
                 Panel.lblID.setText(Integer.toString(rs.getInt("ID")));
                 Panel.btnDelete.setVisible(false);
-                Panel.btnComplete.setVisible(false);
+//                Panel.btnComplete.setVisible(false);
                 Panel.btnComplete2.setVisible(false);
                 Panel.lblCategoryName.setText(rs.getString("Name"));
                 Panel.lblDID.setText("Hotel ID: " + rs.getString("ID"));
                 Panel.lblID.setText(rs.getString("ID"));
+                Panel.btnDelete1.setVisible(false);
+                Panel.btnDelete2.setVisible(false);
                 Panel.jLabel1.setText("H");
                 Panel.lblDueTime.setText(rs.getString("Location"));
                 Integer.parseInt(rs.getString("ID"));
@@ -285,7 +289,9 @@ public class MainFrame extends javax.swing.JFrame {
                 Panel.lblDID.setText(Integer.toString(rs.getInt("rID")));
                 Panel.lblID.setText(Integer.toString(rs.getInt("rID")));
                 Panel.btnDelete.setVisible(true);
-                Panel.btnComplete.setVisible(false);
+                Panel.btnDelete1.setVisible(false);
+                Panel.btnDelete2.setVisible(false);
+//                Panel.btnComplete.setVisible(false);
                 Panel.btnComplete1.setVisible(false);
                 Panel.btnComplete2.setVisible(false);
                 Panel.lblCategoryName.setText(rs.getString("Type"));
