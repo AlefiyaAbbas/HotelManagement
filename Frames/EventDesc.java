@@ -4,6 +4,7 @@
  */
 package Frames;
 
+import static Frames.MainFrame.ContentPanel;
 import java.sql.*;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
@@ -21,14 +22,7 @@ public class EventDesc extends javax.swing.JFrame {
     public EventDesc() {
         initComponents();
         IDDesc.setVisible(false);
-        this.setLocationRelativeTo(null);
-        btnAddEvent.setVisible(false);
-        btnConfirm.setVisible(false);
-        btnUpdate.setVisible(false);
-        btnCancel.setVisible(false);
-        Edited.setText("0");
-        Edited.setVisible(false);
-        btnUpdate.setVisible(false);
+        this.setLocationRelativeTo(this);
     }
 
     /**
@@ -46,13 +40,16 @@ public class EventDesc extends javax.swing.JFrame {
         txtEventName = new javax.swing.JTextField();
         lblCategoryName = new javax.swing.JLabel();
         txtCategoryName = new javax.swing.JTextField();
-        btnUpdate = new javax.swing.JButton();
         IDDesc = new javax.swing.JLabel();
         btnConfirm = new javax.swing.JButton();
-        btnAddEvent = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         Edited = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        lblCategoryName1 = new javax.swing.JLabel();
+        txtCategoryName1 = new javax.swing.JTextField();
+        lblCategoryName2 = new javax.swing.JLabel();
+        txtCategoryName2 = new javax.swing.JTextField();
+        btnConfirm1 = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -66,22 +63,12 @@ public class EventDesc extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(370, 345));
 
         lblEvent.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        lblEvent.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblEvent.setText("Name");
 
-        txtEventName.setEditable(false);
-
         lblCategoryName.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        lblCategoryName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblCategoryName.setText("CategoryName");
-
-        txtCategoryName.setEditable(false);
-
-        btnUpdate.setText("UPDATE");
-        btnUpdate.setBorder(null);
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
 
         IDDesc.setText("ID");
 
@@ -90,14 +77,6 @@ public class EventDesc extends javax.swing.JFrame {
         btnConfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmActionPerformed(evt);
-            }
-        });
-
-        btnAddEvent.setText("Save");
-        btnAddEvent.setBorder(null);
-        btnAddEvent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddEventActionPerformed(evt);
             }
         });
 
@@ -112,38 +91,63 @@ public class EventDesc extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         jLabel1.setText("Manager");
 
+        lblCategoryName1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        lblCategoryName1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblCategoryName1.setText("CategoryName");
+
+        lblCategoryName2.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        lblCategoryName2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblCategoryName2.setText("CategoryName");
+
+        btnConfirm1.setText("CONFIRM");
+        btnConfirm1.setBorder(null);
+        btnConfirm1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirm1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblEvent)
-                    .addComponent(lblCategoryName, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(48, 48, 48)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCategoryName, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEventName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(Edited)
-                .addGap(35, 35, 35)
-                .addComponent(IDDesc)
-                .addGap(29, 29, 29))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(btnAddEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(147, 147, 147)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnConfirm1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(99, 99, 99)
+                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblCategoryName2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtCategoryName2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(lblEvent))
+                                    .addComponent(lblCategoryName1)
+                                    .addComponent(lblCategoryName))
+                                .addGap(50, 59, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Edited, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtCategoryName1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCategoryName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtEventName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(35, 35, 35)
+                        .addComponent(IDDesc)
+                        .addGap(29, 29, 29))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +162,7 @@ public class EventDesc extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblEvent)
                             .addComponent(txtEventName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -166,12 +170,19 @@ public class EventDesc extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblCategoryName)
                             .addComponent(txtCategoryName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(179, 179, 179)))
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCategoryName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCategoryName1))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCategoryName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCategoryName2))
+                        .addGap(89, 89, 89)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAddEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConfirm1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
@@ -189,24 +200,50 @@ public class EventDesc extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        btnConfirm.setVisible(true);
-        txtEventName.setEditable(true);
-        Edited.setText("1");
-        txtCategoryName.setEditable(true);
-    }//GEN-LAST:event_btnUpdateActionPerformed
-
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
-  
+        txtEventName.setEditable(true);
+        txtCategoryName.setEditable(true);
+        txtCategoryName1.setEditable(true);
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
+            PreparedStatement pst = con.prepareStatement("insert into hotel(ID, Name, Location) values(?, ?, ?);");
+            pst.setInt(1, Integer.parseInt(txtEventName.getText()));
+            pst.setString(2, txtCategoryName.getText());
+            pst.setString(3, txtCategoryName1.getText());
+            pst.executeUpdate();
+            btnConfirm1.setVisible(false);
+            btnConfirm.setVisible(true);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        dispose();
     }//GEN-LAST:event_btnConfirmActionPerformed
-
-    private void btnAddEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEventActionPerformed
-
-    }//GEN-LAST:event_btnAddEventActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnConfirm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirm1ActionPerformed
+        txtEventName.setEditable(true);
+        txtCategoryName.setEditable(true);
+        txtCategoryName1.setEditable(true);
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
+            PreparedStatement pst = con.prepareStatement("insert into rooms(rID, occupancy, rate, type, hotelid) values(?, 0, ?, ?, ?);");
+            pst.setInt(1, Integer.parseInt(txtEventName.getText()));
+            pst.setInt(2, Integer.parseInt(txtCategoryName1.getText()));
+            pst.setString(3, txtCategoryName.getText());
+            pst.setInt(4, Integer.parseInt(txtCategoryName2.getText()));
+            pst.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        dispose();
+    }//GEN-LAST:event_btnConfirm1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,16 +283,19 @@ public class EventDesc extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Edited;
     public javax.swing.JLabel IDDesc;
-    public javax.swing.JButton btnAddEvent;
     public javax.swing.JButton btnCancel;
     public javax.swing.JButton btnConfirm;
-    public javax.swing.JButton btnUpdate;
+    public javax.swing.JButton btnConfirm1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     public javax.swing.JLabel lblCategoryName;
+    public javax.swing.JLabel lblCategoryName1;
+    public javax.swing.JLabel lblCategoryName2;
     public javax.swing.JLabel lblEvent;
     public javax.swing.JTextField txtCategoryName;
+    public javax.swing.JTextField txtCategoryName1;
+    public javax.swing.JTextField txtCategoryName2;
     public javax.swing.JTextField txtEventName;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,15 @@
  */
 package Frames;
 
+import java.awt.Color;
+import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import java.awt.event.*;
+
 /**
  *
  * @author RSSH
@@ -11,10 +20,55 @@ package Frames;
 public class Manager extends javax.swing.JFrame {
 
     /**
-     * Creates new form Manager
+     * Creates new form MainFrame
      */
     public Manager() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        MainScrollPanel.setViewportView(ContentPanel);
+        int i = 0;
+        int j = 0;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
+            ContentPanel.removeAll();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from hotel");
+            while (rs.next()) {
+                i = 0;
+                ContentPane Panel = new ContentPane();
+                Panel.setBounds(50, 100 + (j * 100), 700, 100);
+                Panel.lblID.setText(Integer.toString(rs.getInt("ID")));
+                Panel.btnDelete1.setVisible(true);
+                Panel.btnDelete.setVisible(false);
+                Panel.btnDelete2.setVisible(false);
+                Panel.btnComplete1.setVisible(false);
+                Panel.btnComplete.setVisible(false);
+                jButton2.setVisible(false);
+                Panel.btnComplete2.setVisible(false);
+                jButton1.setVisible(true);
+                Panel.lblCategoryName.setText(rs.getString("Name"));
+                Panel.lblDID.setText("Hotel ID: " + rs.getString("ID"));
+                Panel.lblID.setText(rs.getString("ID"));
+                Panel.jLabel1.setText("H");
+                Panel.lblDueTime.setText(rs.getString("Location"));
+                Integer.parseInt(rs.getString("ID"));
+                Panel.lblDueDate.setText("No. of Rooms: " + Integer.toString(i));
+                if (j % 2 == 0) {
+                    Panel.setBackground(new Color(255, 234, 167));
+                }
+                ContentPanel.add(Panel);
+                ContentPanel.add(jButton1);
+                j++;
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        MainScrollPanel.setViewportView(ContentPanel);
+        revalidate();
+        repaint();
     }
 
     /**
@@ -26,13 +80,27 @@ public class Manager extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        MainBackground = new javax.swing.JPanel();
         MainButtonBackground = new javax.swing.JPanel();
         MainMissed = new javax.swing.JButton();
         MainExit = new javax.swing.JButton();
         MainUpcoming = new javax.swing.JButton();
         MainCompleted = new javax.swing.JButton();
+        MainScrollPanel = new javax.swing.JScrollPane();
+        ContentPanel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("TimeKeeper");
+
+        MainBackground.setBackground(new java.awt.Color(0, 206, 201));
+        MainBackground.setPreferredSize(new java.awt.Dimension(800, 600));
+        MainBackground.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                MainBackgroundFocusGained(evt);
+            }
+        });
 
         MainButtonBackground.setBackground(new java.awt.Color(0, 206, 201));
 
@@ -60,7 +128,7 @@ public class Manager extends javax.swing.JFrame {
 
         MainUpcoming.setBackground(new java.awt.Color(255, 255, 255));
         MainUpcoming.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        MainUpcoming.setText("Manage Hotels");
+        MainUpcoming.setText("Manage Hotel");
         MainUpcoming.setBorder(null);
         MainUpcoming.setContentAreaFilled(false);
         MainUpcoming.addActionListener(new java.awt.event.ActionListener() {
@@ -87,9 +155,9 @@ public class Manager extends javax.swing.JFrame {
             .addGroup(MainButtonBackgroundLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(MainUpcoming, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77)
+                .addGap(67, 67, 67)
                 .addComponent(MainCompleted, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
+                .addGap(90, 90, 90)
                 .addComponent(MainMissed, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(MainExit, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -108,25 +176,76 @@ public class Manager extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        ContentPanel.setBackground(new java.awt.Color(129, 236, 236));
+        ContentPanel.setPreferredSize(new java.awt.Dimension(700, 1500));
+
+        jButton1.setText("Add Hotel");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Add Room");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ContentPanelLayout = new javax.swing.GroupLayout(ContentPanel);
+        ContentPanel.setLayout(ContentPanelLayout);
+        ContentPanelLayout.setHorizontalGroup(
+            ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContentPanelLayout.createSequentialGroup()
+                .addGap(344, 344, 344)
+                .addGroup(ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(332, Short.MAX_VALUE))
+        );
+        ContentPanelLayout.setVerticalGroup(
+            ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContentPanelLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(1454, 1454, 1454))
+        );
+
+        MainScrollPanel.setViewportView(ContentPanel);
+
+        javax.swing.GroupLayout MainBackgroundLayout = new javax.swing.GroupLayout(MainBackground);
+        MainBackground.setLayout(MainBackgroundLayout);
+        MainBackgroundLayout.setHorizontalGroup(
+            MainBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MainBackgroundLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(MainBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(MainScrollPanel)
+                    .addComponent(MainButtonBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        MainBackgroundLayout.setVerticalGroup(
+            MainBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MainBackgroundLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(MainButtonBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(MainScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 818, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(MainButtonBackground, javax.swing.GroupLayout.PREFERRED_SIZE, 798, Short.MAX_VALUE)
-                    .addContainerGap()))
+            .addComponent(MainBackground, javax.swing.GroupLayout.PREFERRED_SIZE, 818, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 355, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(142, 142, 142)
-                    .addComponent(MainButtonBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(143, Short.MAX_VALUE)))
+            .addComponent(MainBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
         );
 
         pack();
@@ -137,8 +256,8 @@ public class Manager extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
-            MainFrame.ContentPanel.removeAll();
+                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
+            Manager.ContentPanel.removeAll();
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from rooms where occupancy = 0;");
             while (rs.next()) {
@@ -166,52 +285,138 @@ public class Manager extends javax.swing.JFrame {
         repaint();
     }//GEN-LAST:event_MainMissedActionPerformed
 
-    private void MainExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainExitActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_MainExitActionPerformed
-
     private void MainUpcomingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainUpcomingActionPerformed
-        
-    }//GEN-LAST:event_MainUpcomingActionPerformed
-
-    private void MainCompletedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainCompletedActionPerformed
         int i = 0;
+        int j = 0;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
-            MainFrame.ContentPanel.removeAll();
+                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
+            ContentPanel.removeAll();
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from rooms where occupancy = 1;");
+            ResultSet rs = stmt.executeQuery("select * from hotel");
             while (rs.next()) {
+                i = 0;
                 ContentPane Panel = new ContentPane();
-                Panel.lblDID.setText(Integer.toString(rs.getInt("rID")));
-                Panel.lblID.setText(Integer.toString(rs.getInt("rID")));
-                Panel.btnDelete.setVisible(true);
-                Panel.btnComplete.setVisible(false);
+                Panel.setBounds(50, 100 + (j * 100), 700, 100);
+                Panel.lblID.setText(Integer.toString(rs.getInt("ID")));
+                Panel.btnDelete1.setVisible(true);
+                Panel.btnDelete.setVisible(false);
+                Panel.btnDelete2.setVisible(false);
                 Panel.btnComplete1.setVisible(false);
+                Panel.btnComplete.setVisible(false);
+                jButton2.setVisible(false);
+                jButton1.setVisible(true);
                 Panel.btnComplete2.setVisible(false);
-                Panel.lblCategoryName.setText(rs.getString("Type"));
-                Panel.lblDueDate.setText(rs.getString("rate"));
-                Panel.setBounds(50, 50 + (i * 100), 700, 100);
-                if (i % 2 != 0) {
-                    Panel.setBackground(new Color(9, 132, 227));
+                Panel.lblCategoryName.setText(rs.getString("Name"));
+                Panel.lblDID.setText("Hotel ID: " + rs.getString("ID"));
+                Panel.lblID.setText(rs.getString("ID"));
+                Panel.jLabel1.setText("H");
+                Panel.lblDueTime.setText(rs.getString("Location"));
+                Integer.parseInt(rs.getString("ID"));
+                Panel.lblDueDate.setText("No. of Rooms: " + Integer.toString(i));
+                if (j % 2 == 0) {
+                    Panel.setBackground(new Color(255, 234, 167));
                 }
                 ContentPanel.add(Panel);
-                i++;
+                ContentPanel.add(jButton1);
+                j++;
             }
+
         } catch (Exception e) {
             System.out.println(e);
         }
         MainScrollPanel.setViewportView(ContentPanel);
         revalidate();
         repaint();
+    }//GEN-LAST:event_MainUpcomingActionPerformed
+
+    private void MainExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_MainExitActionPerformed
+
+    private void MainCompletedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainCompletedActionPerformed
+        int i = 0;
+        int j = 0;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
+            ContentPanel.removeAll();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from rooms");
+            while (rs.next()) {
+                i = 0;
+                ContentPane Panel = new ContentPane();
+                Panel.setBounds(50, 100 + (j * 100), 700, 100);
+                Panel.lblID.setText(Integer.toString(rs.getInt("rID")));
+                Panel.btnDelete1.setVisible(false);
+                Panel.btnDelete.setVisible(false);
+                Panel.btnDelete2.setVisible(true);
+                jButton1.setVisible(false);
+                jButton2.setVisible(true);
+                Panel.btnComplete1.setVisible(false);
+                Panel.btnComplete.setVisible(false);
+                Panel.btnComplete2.setVisible(false);
+                Panel.lblDID.setText(Integer.toString(rs.getInt("rID")));
+                Panel.lblID.setText(Integer.toString(rs.getInt("rID")));
+                Panel.lblCategoryName.setText(rs.getString("Type"));
+                Panel.lblDueDate.setText(rs.getString("rate"));
+                Panel.lblDueTime.setText(rs.getString("HotelID"));
+
+                if (j % 2 == 0) {
+                    Panel.setBackground(new Color(255, 234, 167));
+                }
+                ContentPanel.add(Panel);
+                ContentPanel.add(jButton2);
+                j++;
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+//        jButton1.setText("Add Rooms");
+        ContentPanel.add(jButton1);
+        MainScrollPanel.setViewportView(ContentPanel);
+        revalidate();
+        repaint();
     }//GEN-LAST:event_MainCompletedActionPerformed
+
+    private void MainBackgroundFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MainBackgroundFocusGained
+
+    }//GEN-LAST:event_MainBackgroundFocusGained
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        EventDesc ed = new EventDesc();
+        ed.setVisible(true);
+        ed.lblCategoryName.setText("Enter Hotel Name: ");
+        ed.lblEvent.setText("Enter Hotel ID: ");
+        ed.lblCategoryName1.setText("Hotel Location: ");
+        ed.btnConfirm.setVisible(true);
+        ed.btnConfirm1.setVisible(false);
+        ed.lblCategoryName2.setVisible(false);
+        ed.txtCategoryName2.setVisible(false);
+        ed.btnCancel.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        EventDesc ed = new EventDesc();
+        ed.setVisible(true);
+        ed.lblCategoryName.setText("Enter Room Type: ");
+        ed.lblEvent.setText("Enter Room ID: ");
+        ed.lblCategoryName1.setText("Room Rate: ");
+        ed.lblCategoryName2.setText("Room Hotel: ");
+        ed.btnConfirm.setVisible(false);
+        ed.btnConfirm1.setVisible(true);
+        ed.btnConfirm.setVisible(false);
+        ed.btnCancel.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -234,6 +439,9 @@ public class Manager extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Manager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -241,13 +449,34 @@ public class Manager extends javax.swing.JFrame {
                 new Manager().setVisible(true);
             }
         });
+        //JOptionPane.showMessageDialog(null, "Hello World");
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/timekeeper", "root", "srshah");
+//here sonoo is database name, root is username and password  
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from Events");
+            while (rs.next()) {
+
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JPanel ContentPanel;
+    private javax.swing.JPanel MainBackground;
     private javax.swing.JPanel MainButtonBackground;
     private javax.swing.JButton MainCompleted;
     private javax.swing.JButton MainExit;
     private javax.swing.JButton MainMissed;
+    private javax.swing.JScrollPane MainScrollPanel;
     public javax.swing.JButton MainUpcoming;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
 }
