@@ -226,7 +226,7 @@ public class ContentPane extends javax.swing.JPanel {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
+                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "50422995");
             PreparedStatement pst = con.prepareStatement("update rooms set occupancy = 0 where rid = ?");
             pst.setString(1, lblID.getText());
             pst.executeUpdate();
@@ -241,7 +241,7 @@ public class ContentPane extends javax.swing.JPanel {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
+                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "50422995");
             MainFrame.ContentPanel.removeAll();
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from rooms where hotelid =" + lblID.getText() + " and occupancy = 0;");
@@ -274,7 +274,7 @@ public class ContentPane extends javax.swing.JPanel {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
+                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "50422995");
             MainFrame.ContentPanel.removeAll();
             Statement stmt = con.createStatement();
             PreparedStatement pst = con.prepareStatement("update rooms set occupancy = 1 where rid = ?");
@@ -292,7 +292,7 @@ public class ContentPane extends javax.swing.JPanel {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
+                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "50422995");
             PreparedStatement pst = con.prepareStatement("delete from hotel where id = ?");
             pst.setInt(1, Integer.parseInt(lblID.getText()));
             pst.executeUpdate();
@@ -306,7 +306,7 @@ public class ContentPane extends javax.swing.JPanel {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
+                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "50422995");
             PreparedStatement pst = con.prepareStatement("delete from rooms where rid = ?");
             pst.setInt(1, Integer.parseInt(lblID.getText()));
             pst.executeUpdate();

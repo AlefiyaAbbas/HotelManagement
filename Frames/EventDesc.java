@@ -207,7 +207,7 @@ public class EventDesc extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
+                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "50422995");
             PreparedStatement pst = con.prepareStatement("insert into hotel(ID, Name, Location) values(?, ?, ?);");
             pst.setInt(1, Integer.parseInt(txtEventName.getText()));
             pst.setString(2, txtCategoryName.getText());
@@ -232,7 +232,7 @@ public class EventDesc extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
+                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "50422995");
             PreparedStatement pst = con.prepareStatement("insert into rooms(rID, occupancy, rate, type, hotelid) values(?, 0, ?, ?, ?);");
             pst.setInt(1, Integer.parseInt(txtEventName.getText()));
             pst.setInt(2, Integer.parseInt(txtCategoryName1.getText()));

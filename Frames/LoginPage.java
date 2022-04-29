@@ -166,7 +166,7 @@ public class LoginPage extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
+                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "50422995");
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from login where desg ='" + designation + "';");
             System.out.println(stmt.toString());

@@ -191,7 +191,7 @@ public class MainFrame extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
+                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "50422995");
             MainFrame.ContentPanel.removeAll();
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from rooms where occupancy = 0;");
@@ -228,7 +228,7 @@ public class MainFrame extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
+                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "50422995");
             ContentPanel.removeAll();
             Statement stmt = con.createStatement();
             Statement rstmt = con.createStatement();
@@ -280,7 +280,7 @@ public class MainFrame extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "srshah");
+                    "jdbc:mysql://localhost:3306/HotelManagement", "root", "50422995");
             MainFrame.ContentPanel.removeAll();
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from rooms where occupancy = 1;");
@@ -351,21 +351,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         //JOptionPane.showMessageDialog(null, "Hello World");
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/timekeeper", "root", "srshah");
-//here sonoo is database name, root is username and password  
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from Events");
-            while (rs.next()) {
-
-            }
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
